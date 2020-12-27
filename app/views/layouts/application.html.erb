@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PostalcodeSearch</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= form_with url: home_result_path, method: :get do |f| %>
+      <%= f.text_field :postal_code, class: "", placeholder: "郵便番号を入力してください" %>
+      <%= f.submit value: "検索" %>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
