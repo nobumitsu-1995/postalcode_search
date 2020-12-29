@@ -18,9 +18,6 @@ class HomeController < ApplicationController
           flash[:notice] = "郵便番号が存在しません。"
         end
       end
-    else
-      flash[:notice] = result["message"]
-      render("home/result")
     end
   end
 end
