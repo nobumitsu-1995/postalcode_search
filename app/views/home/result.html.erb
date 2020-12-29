@@ -1,8 +1,18 @@
-<p>郵便番号</p>
-<p><%= @postal_code %></p>
-<p>都道府県</p>
-<p><%= @address1 %></p>
-<p>市区町村</p>
-<p><%= @address2 %></p>
-<p>町域</p>
-<p><%= @address3 %></p>
+<table>
+  <tr class="postal_content">
+    <th>郵便番号:</th>
+    <td><%= @zipcode %></td>
+  </tr>
+  <tr class="postal_content">
+    <th>都道府県:</th>
+    <td><%= @address1 %></td>
+  </tr>
+  <tr class="postal_content">
+    <th>市区町村:</th>
+    <td><%= @address2 %></td>
+  </tr>
+  <tr class="postal_content">
+    <th>町域:</th>
+    <td><%= @address3 %></td>
+  </tr>
+</table>

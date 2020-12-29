@@ -10,10 +10,18 @@
   </head>
 
   <body>
-    <%= form_with url: home_result_path, method: :get do |f| %>
-      <%= f.text_field :postal_code, class: "", placeholder: "郵便番号を入力してください" %>
-      <%= f.submit value: "検索" %>
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
     <% end %>
-    <%= yield %>
+    <div class="container">
+      <h1>郵便番号検索</h1>
+      <%= form_with method: :get do |f| %>
+      <%= f.text_field :postal_code, class: "", placeholder: "郵便番号を入力してください", value: "#{@postal_code}" %>
+      <%= f.submit value: "検索" %>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

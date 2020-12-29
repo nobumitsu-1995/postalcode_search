@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def result
-    if postal_code = params[:postal_code]
-      params = URI.encode_www_form({zipcode: postal_code})
+    if @postal_code = params[:postal_code]
+      params = URI.encode_www_form({zipcode: @postal_code})
       uri = URI.parse("http://zipcloud.ibsnet.co.jp/api/search?#{params}")
       response = Net::HTTP.get_response(uri)
       result = JSON.parse(response.body)
@@ -10,11 +10,17 @@ class HomeController < ApplicationController
         @address1 = result["results"][0]["address1"]
         @address2 = result["results"][0]["address2"]
         @address3 = result["results"][0]["address3"]
+        flash[:notice] = nil
       else
-        flash[:notice] = "郵便番号は存在しません。"
+        if flash[:notice] = result["message"]
+          render("home/result")
+        else
+          flash[:notice] = "郵便番号が存在しません。"
+        end
       end
     else
-      flash[:notice] = "郵便番号を入力してください。"
+      flash[:notice] = result["message"]
+      render("home/result")
     end
   end
 end
